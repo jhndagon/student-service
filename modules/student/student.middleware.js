@@ -7,7 +7,8 @@
         getStudentById,
         modifyStudent,
         removeStudent,
-        getStudentsAveragedByCourseName
+        getStudentsAveragedByCourseName,
+        updateCourse
     };
 
     var StudentService = require('./student.module')().StudentService;
@@ -119,7 +120,20 @@
         function error(err) {
             next(err);
         }
+ 
 
     }
+
+    function updateCourse(req, res, next) { 
+        StudentService.fetchCourse(req.params.courseName,Number(req.body.grade))
+        .then(success)
+        .catch(failure);
+         function success(data) { 
+             req.response = data;
+             next(); 
+            } 
+        function failure(err) { 
+            next(err); 
+        } }
 
 })();

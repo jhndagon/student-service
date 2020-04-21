@@ -6,7 +6,8 @@
         fetchStudents,
         fetchStudentById,
         updateStudent,
-        deleteStudent
+        deleteStudent,
+        fetchCourse
     };
 
     var StudentModel = require('./student.module')().StudentModel;
@@ -35,6 +36,11 @@
         return StudentModel
             .findByIdAndRemove(studentId)
             .exec();
+    }
+
+    function fetchCourse(courseAl,gradeAl) {
+        return StudentModel.updateMany({"courses":{ "name": courseAl}}, {"$set": {"courses": {"grade":gradeAl}}})
+        .exec() 
     }
 
 })();

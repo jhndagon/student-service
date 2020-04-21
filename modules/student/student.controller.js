@@ -41,6 +41,13 @@
         function (req, res) {
             res.status(200).json(req.response);
         });
+    router.put('/course/:courseName',
+        StudentMiddleware.updateCourse,
+        function (req, res) {
+            res.status(200).json(req.response);
+        });
+
+
     module.exports = router;
 
 })();
